@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+<body>
+    
+    <!-- <div id="form"></div> -->
+    <form id="form"  class="form-group">
+        
+    </form>
+
+<button onclick="fun() ; this.style.display='none'" >Click Me</button>
+
+
+    <script>
+
+// var obj = JSON.parse('{"firstName":"John", "lastName":"Doe","type": "text","required": false, "label": "Text Field", "className": "form-control","name": "text-1606821014598", "subtype": "text"}');
+
+var json=[
+  {
+    "type": "text",
+    "required": false,
+    "label": "First Name",
+    "className": "form-control",
+    "name": "text-1606993456861",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "text",
+    "required": false,
+    "label": "Last Name",
+    "className": "form-control",
+    "name": "text-1606993473628",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "text",
+    "required": false,
+    "label": "Email",
+    "className": "form-control",
+    "name": "text-1606993506154",
+    "access": false,
+    "subtype": "text"
+  },
+  {
+    "type": "number",
+    "required": false,
+    "label": "Phone No.",
+    "className": "form-control",
+    "name": "number-1606993520317",
+    "access": false
+  }
+]
+
+function fun(){
+    for(var i=0;i<json.length;i++){
+    //   var obj=JSON.parse(json[i]);
+    var obj=json[i];
+      let f=  createfield(obj);
+      document.getElementById('form').appendChild(f);
+    }
+}
+
+// var obj = JSON.parse('{"type": "button", "required": false, "label": "Text Field"}');
+
+function createfield(obj){
+    let field = document.createElement("div");  
+    let holder = document.createElement("label");
+    holder.setAttribute("class" ,"font-weight-bold" );
+    field.setAttribute("width" , "30px");
+    field.setAttribute("display","flex");
+    holder.setAttribute("display","flex");
+   
+    if(obj.type=="button"){
+        let enterValue = document.createElement("button");
+        enterValue.setAttribute("class","btn btn-primary");
+        enterValue.innerHTML=obj.label;
+        field.appendChild(enterValue);
+    }else if(obj.type=="textarea"){
+    let enterValue = document.createElement("textarea");
+    enterValue.setAttribute("placeholder",obj.label);
+    enterValue.setAttribute("class","form-control");
+    holder.setAttribute("label",obj.label);
+    field.appendChild(holder);
+    field.appendChild(enterValue);
+    }else{
+    let enterValue = document.createElement("input");
+    enterValue.setAttribute("type",obj.type); 
+    enterValue.setAttribute("placeholder",obj.label);
+    enterValue.setAttribute("class","form-control");
+    holder.innerHTML= obj.label;
+    field.appendChild(holder);
+    field.appendChild(enterValue);
+    }
+    
+   return field;
+}
+
+
+
+
+     </script>
+</body>
+</html>
